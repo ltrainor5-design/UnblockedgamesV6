@@ -880,12 +880,5 @@ document.getElementById("fakebtn").onclick = () => {
 
 async function saveData(){const e={};e.cookies=document.cookie,e.localStorage={...localStorage},e.sessionStorage={...sessionStorage},alert("Downloading...");const o=Uint8Array.from(atob("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9YyqZ4QAAAAASUVORK5CYII="),(e=>e.charCodeAt(0))),t=(new TextEncoder).encode(JSON.stringify(e)),n=new Blob([o,t],{type:"image/png"}),a=document.createElement("a");a.href=URL.createObjectURL(n),a.download=`Lesson_v${Date.now()}.png`,document.body.appendChild(a),a.click(),document.body.removeChild(a)}document.getElementById("importfile").addEventListener("change",(async function(e){const o=e.target.files[0];if(!o)return;const t=new FileReader;t.onload=function(e){const o=new Uint8Array(e.target.result),t=[73,69,78,68,174,66,96,130];let n=-1;for(let e=0;e<o.length-t.length;e++){let a=!0;for(let n=0;n<t.length;n++)if(o[e+n]!==t[n]){a=!1;break}if(a){n=e+t.length;break}}if(-1===n)return void alert("Invalid PNG or no embedded data found");const a=o.slice(n),r=(new TextDecoder).decode(a);let c;try{c=JSON.parse(r)}catch(e){return void alert("Invalid embedded JSON")}if(c.cookies&&c.cookies.split(";").forEach((e=>{document.cookie=e.trim()})),c.localStorage){console.log("yay");for(const e in c.localStorage)localStorage.setItem(e,c.localStorage[e])}if(c.sessionStorage)for(const e in c.sessionStorage)sessionStorage.setItem(e,c.sessionStorage[e]);alert("Data loaded")},t.readAsArrayBuffer(o)}));
 </script>
-
-
-
- 
- 
-
-
 </body>
 </html
